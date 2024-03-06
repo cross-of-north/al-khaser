@@ -81,17 +81,21 @@ int main(int argc, char* argv[])
 		EnableDefaultChecks();
 	}
 
+#if 0
 	/* Resize the console window for better visibility */
 	resize_console_window();
 
 	/* Display general informations */
 	_tprintf(_T("[al-khaser version 0.82]"));
-
+#endif // 0
 	print_category(TEXT("Initialisation"));
 	API::Init();
+#if 0
 	print_os();
+#endif // 0
 	API::PrintAvailabilityReport();
 
+#if 0
 	/* Are we running under WoW64 */
 	if (IsWoW64())
 		_tprintf(_T("Process is running under WOW64\n\n"));
@@ -104,6 +108,7 @@ int main(int argc, char* argv[])
 		exec_check(&TLSCallbackProcess, TEXT("TLS process attach callback "));
 		exec_check(&TLSCallbackThread, TEXT("TLS thread attach callback "));
 	}
+#endif // 0
 
 	/* Debugger Detection */
 	if (ENABLE_DEBUG_CHECKS) {
@@ -185,7 +190,9 @@ int main(int argc, char* argv[])
 		exec_check(&disk_size_getdiskfreespace, TEXT("Checking disk size using GetDiskFreeSpaceEx "));
 		exec_check(&cpuid_is_hypervisor, TEXT("Checking if CPU hypervisor field is set using cpuid(0x1)"));
 		exec_check(&cpuid_hypervisor_vendor, TEXT("Checking hypervisor vendor using cpuid(0x40000000)"));
+#if 0
 		exec_check(&accelerated_sleep, TEXT("Check if time has been accelerated "));
+#endif // 0
 		exec_check(&VMDriverServices, TEXT("VM Driver Services  "));
 		exec_check(&serial_number_bios_wmi, TEXT("Checking SerialNumber from BIOS using WMI "));
 		exec_check(&model_computer_system_wmi, TEXT("Checking Model from ComputerSystem using WMI "));
@@ -257,7 +264,9 @@ int main(int argc, char* argv[])
 	/* Virtual PC Detection */
 	if (ENABLE_VPC_CHECKS) {
 		print_category(TEXT("Virtual PC Detection"));
+#if 0
 		virtual_pc_process();
+#endif // 0
 		virtual_pc_reg_keys();
 	}
 
@@ -308,6 +317,7 @@ int main(int argc, char* argv[])
 	}
 
 	/* Code injections techniques */
+#if 0
 	if (ENABLE_CODE_INJECTIONS) {
 		CreateRemoteThread_Injection();
 		SetWindowsHooksEx_Injection();
@@ -361,6 +371,7 @@ int main(int argc, char* argv[])
 		AntiDisassmSEHMisuse();
 #endif
 	}
+#endif // 0
 
 	/* Anti Dumping */
 	if (ENABLE_DUMPING_CHECK) {
@@ -369,9 +380,11 @@ int main(int argc, char* argv[])
 		SizeOfImage();
 	}
 
+#if 0
 	_tprintf(_T("\n\nAnalysis done, I hope you didn't get red flags :)"));
 
 	getchar();
+#endif // 0
 	return 0;
 }
 
